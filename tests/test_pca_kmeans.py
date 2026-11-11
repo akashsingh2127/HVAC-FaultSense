@@ -27,6 +27,11 @@ def test_pca_scratch():
     X_recon = pca.inverse_transform(X_trans)
     assert np.allclose(X, X_recon, atol=1e-5)
 
+    # Check reconstruction error metric
+    recon_err = pca.compute_reconstruction_error(X)
+    assert recon_err >= 0.0
+    assert np.isclose(recon_err, 0.0, atol=1e-5)
+
 
 def test_kmeans_scratch_clusters():
     rng = np.random.default_rng(42)

@@ -11,52 +11,60 @@
       "Recall": "N/A",
       "Macro-F1": "N/A",
       "Silhouette": "N/A",
-      "Train Time (s)": 0.001,
+      "Davies-Bouldin": "N/A",
+      "Calinski-Harabasz": "N/A",
+      "Train Time (s)": 0.0,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
     {
       "Model": "OLS Regression (Scratch)",
       "Task": "Regression",
-      "MAE": "29.9171",
-      "RMSE": "38.9816",
-      "R2": "0.9983",
+      "MAE": "92.2755",
+      "RMSE": "119.3139",
+      "R2": "0.9840",
       "Accuracy": "N/A",
       "Precision": "N/A",
       "Recall": "N/A",
       "Macro-F1": "N/A",
       "Silhouette": "N/A",
-      "Train Time (s)": 36.101,
+      "Davies-Bouldin": "N/A",
+      "Calinski-Harabasz": "N/A",
+      "Train Time (s)": 10.293,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
     {
       "Model": "Ridge Regression (Scratch)",
       "Task": "Regression",
-      "MAE": "137.9101",
-      "RMSE": "169.0907",
-      "R2": "0.9678",
+      "MAE": "156.4354",
+      "RMSE": "187.7189",
+      "R2": "0.9603",
       "Accuracy": "N/A",
       "Precision": "N/A",
       "Recall": "N/A",
       "Macro-F1": "N/A",
       "Silhouette": "N/A",
-      "Train Time (s)": 4.271,
+      "Davies-Bouldin": "N/A",
+      "Calinski-Harabasz": "N/A",
+      "Train Time (s)": 3.2,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
     {
       "Model": "Linear Regression (Reference)",
       "Task": "Regression",
-      "MAE": "0.0000",
-      "RMSE": "0.0000",
-      "R2": "1.0000",
+      "MAE": "72.6888",
+      "RMSE": "102.2924",
+      "R2": "0.9882",
       "Accuracy": "N/A",
       "Precision": "N/A",
       "Recall": "N/A",
       "Macro-F1": "N/A",
       "Silhouette": "N/A",
-      "Train Time (s)": 0.84,
+      "Davies-Bouldin": "N/A",
+      "Calinski-Harabasz": "N/A",
+      "Train Time (s)": 0.15,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
@@ -70,8 +78,10 @@
       "Precision": "N/A",
       "Recall": "N/A",
       "Macro-F1": "N/A",
-      "Silhouette": "0.4726",
-      "Train Time (s)": 7.263,
+      "Silhouette": "0.4966",
+      "Davies-Bouldin": "0.7271",
+      "Calinski-Harabasz": "4967.2",
+      "Train Time (s)": 3.206,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
@@ -85,8 +95,10 @@
       "Precision": "N/A",
       "Recall": "N/A",
       "Macro-F1": "N/A",
-      "Silhouette": "0.4821",
-      "Train Time (s)": 5.316,
+      "Silhouette": "0.4644",
+      "Davies-Bouldin": "0.7380",
+      "Calinski-Harabasz": "3764.5",
+      "Train Time (s)": 6.217,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
@@ -101,7 +113,9 @@
       "Recall": "0.1429",
       "Macro-F1": "0.0476",
       "Silhouette": "N/A",
-      "Train Time (s)": 0.157,
+      "Davies-Bouldin": "N/A",
+      "Calinski-Harabasz": "N/A",
+      "Train Time (s)": 0.107,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
@@ -116,7 +130,9 @@
       "Recall": "0.5953",
       "Macro-F1": "0.5830",
       "Silhouette": "N/A",
-      "Train Time (s)": 12.033,
+      "Davies-Bouldin": "N/A",
+      "Calinski-Harabasz": "N/A",
+      "Train Time (s)": 7.771,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
@@ -126,12 +142,14 @@
       "MAE": "N/A",
       "RMSE": "N/A",
       "R2": "N/A",
-      "Accuracy": "0.6447",
-      "Precision": "0.5242",
-      "Recall": "0.5192",
-      "Macro-F1": "0.5022",
+      "Accuracy": "0.6436",
+      "Precision": "0.4990",
+      "Recall": "0.5167",
+      "Macro-F1": "0.4908",
       "Silhouette": "N/A",
-      "Train Time (s)": 90.155,
+      "Davies-Bouldin": "N/A",
+      "Calinski-Harabasz": "N/A",
+      "Train Time (s)": 50.189,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
@@ -142,11 +160,13 @@
       "RMSE": "N/A",
       "R2": "N/A",
       "Accuracy": "0.6725",
-      "Precision": "0.7025",
+      "Precision": "0.7279",
       "Recall": "0.5695",
-      "Macro-F1": "0.5347",
+      "Macro-F1": "0.5346",
       "Silhouette": "N/A",
-      "Train Time (s)": 4.318,
+      "Davies-Bouldin": "N/A",
+      "Calinski-Harabasz": "N/A",
+      "Train Time (s)": 3.55,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
@@ -156,23 +176,42 @@
       "MAE": "N/A",
       "RMSE": "N/A",
       "R2": "N/A",
-      "Accuracy": "0.5986",
-      "Precision": "0.4346",
-      "Recall": "0.4733",
-      "Macro-F1": "0.4285",
+      "Accuracy": "0.6196",
+      "Precision": "0.4708",
+      "Recall": "0.4953",
+      "Macro-F1": "0.4745",
       "Silhouette": "N/A",
-      "Train Time (s)": 27.821,
+      "Davies-Bouldin": "N/A",
+      "Calinski-Harabasz": "N/A",
+      "Train Time (s)": 18.66,
       "Train Samples": 179925,
       "Test Samples": 60000
+    },
+    {
+      "Model": "CART (Unseen Severity Holdout)",
+      "Task": "Classification",
+      "MAE": "N/A",
+      "RMSE": "N/A",
+      "R2": "N/A",
+      "Accuracy": "0.5777",
+      "Precision": "0.6751",
+      "Recall": "0.4622",
+      "Macro-F1": "0.4954",
+      "Silhouette": "N/A",
+      "Davies-Bouldin": "N/A",
+      "Calinski-Harabasz": "N/A",
+      "Train Time (s)": 0.0,
+      "Train Samples": 201537,
+      "Test Samples": 38388
     }
   ],
   "best_models": {
     "Regression": {
       "winner": "Linear Regression (Reference)",
       "primary_metric": "RMSE",
-      "score": 0.0,
-      "r2": 1.0,
-      "reason": "Achieved lowest Root Mean Squared Error (0.0000 W) and highest R2 (1.0000) on held-out test data."
+      "score": 102.2924,
+      "r2": 0.9882,
+      "reason": "Achieved lowest Root Mean Squared Error (102.2924 W) and highest R2 (0.9882) on held-out test data."
     },
     "Classification": {
       "winner": "CART Decision Tree (Scratch)",
@@ -182,10 +221,10 @@
       "reason": "Achieved highest Macro-F1 (0.5830) accounting for fault class imbalance on held-out scenarios."
     },
     "Clustering": {
-      "winner": "GMM / EM (Scratch)",
+      "winner": "K-Means (Scratch)",
       "primary_metric": "Silhouette Score",
-      "score": 0.4820791297416621,
-      "reason": "Yielded highest cluster cohesion and separation (Silhouette = 0.4821)."
+      "score": 0.49656634993560145,
+      "reason": "Yielded highest cluster cohesion and separation (Silhouette = 0.4966)."
     }
   },
   "classification_metrics": {
@@ -316,12 +355,12 @@
       }
     },
     "adaboost": {
-      "Accuracy": 0.6447,
-      "Balanced_Accuracy": 0.5192,
-      "Precision": 0.5242,
-      "Recall": 0.5192,
-      "Macro-F1": 0.5022,
-      "Weighted-F1": 0.6254,
+      "Accuracy": 0.6436,
+      "Balanced_Accuracy": 0.5167,
+      "Precision": 0.499,
+      "Recall": 0.5167,
+      "Macro-F1": 0.4908,
+      "Weighted-F1": 0.6155,
       "classes": [
         "CondenserFouling",
         "EvaporatorFouling",
@@ -343,46 +382,46 @@
         ],
         [
           0,
-          10379,
+          10439,
           0,
-          304,
-          1255,
-          62,
+          1167,
+          0,
+          394,
           0
         ],
         [
           0,
           0,
           0,
-          1737,
-          8,
+          1745,
+          0,
           655,
           0
         ],
         [
           0,
-          111,
+          135,
           0,
-          7389,
-          485,
-          559,
-          1056
+          7633,
+          0,
+          823,
+          1009
         ],
         [
           0,
-          9,
+          15,
           0,
-          5725,
-          257,
-          1209,
+          5939,
+          0,
+          1246,
           0
         ],
         [
           0,
           0,
           0,
-          5411,
-          6,
+          5417,
+          0,
           1783,
           0
         ],
@@ -390,10 +429,10 @@
           0,
           0,
           0,
-          2028,
-          16,
+          2157,
+          0,
           680,
-          6876
+          6763
         ]
       ],
       "per_class": {
@@ -404,9 +443,9 @@
           "support": 12000
         },
         "EvaporatorFouling": {
-          "precision": 0.9886,
-          "recall": 0.8649,
-          "f1": 0.9226,
+          "precision": 0.9858,
+          "recall": 0.8699,
+          "f1": 0.9243,
           "support": 12000
         },
         "FaultFree": {
@@ -416,58 +455,159 @@
           "support": 2400
         },
         "LiquidLineRestriction": {
-          "precision": 0.327,
-          "recall": 0.7697,
-          "f1": 0.459,
+          "precision": 0.3173,
+          "recall": 0.7951,
+          "f1": 0.4536,
           "support": 9600
         },
         "RefrigerantOvercharge": {
-          "precision": 0.1268,
-          "recall": 0.0357,
-          "f1": 0.0557,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
           "support": 7200
         },
         "RefrigerantUndercharge": {
-          "precision": 0.3603,
+          "precision": 0.3195,
           "recall": 0.2476,
-          "f1": 0.2935,
+          "f1": 0.279,
           "support": 7200
         },
         "SuctionLineRestriction": {
-          "precision": 0.8669,
-          "recall": 0.7163,
-          "f1": 0.7844,
+          "precision": 0.8702,
+          "recall": 0.7045,
+          "f1": 0.7786,
           "support": 9600
+        }
+      }
+    },
+    "cart_unseen_scenario": {
+      "Accuracy": 0.5777,
+      "Balanced_Accuracy": 0.4622,
+      "Precision": 0.6751,
+      "Recall": 0.4622,
+      "Macro-F1": 0.4954,
+      "Weighted-F1": 0.6193,
+      "classes": [
+        "CondenserFouling",
+        "EvaporatorFouling",
+        "LiquidLineRestriction",
+        "RefrigerantOvercharge",
+        "RefrigerantUndercharge"
+      ],
+      "confusion_matrix": [
+        [
+          9597,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          8037,
+          1560,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          5,
+          5817,
+          419,
+          3356
+        ],
+        [
+          0,
+          1,
+          5382,
+          89,
+          4125
+        ]
+      ],
+      "per_class": {
+        "CondenserFouling": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 9597
+        },
+        "EvaporatorFouling": {
+          "precision": 0.9993,
+          "recall": 0.8374,
+          "f1": 0.9112,
+          "support": 9597
+        },
+        "LiquidLineRestriction": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "RefrigerantOvercharge": {
+          "precision": 0.8248,
+          "recall": 0.0437,
+          "f1": 0.0829,
+          "support": 9597
+        },
+        "RefrigerantUndercharge": {
+          "precision": 0.5514,
+          "recall": 0.4298,
+          "f1": 0.4831,
+          "support": 9597
         }
       }
     }
   },
   "regression_metrics": {
     "ols": {
-      "MAE": 29.9171,
-      "MSE": 1519.5685,
-      "RMSE": 38.9816,
-      "R2": 0.9983
+      "MAE": 92.2755,
+      "MSE": 14235.8154,
+      "RMSE": 119.3139,
+      "R2": 0.984
     },
     "ridge": {
-      "MAE": 137.9101,
-      "MSE": 28591.6653,
-      "RMSE": 169.0907,
-      "R2": 0.9678
+      "MAE": 156.4354,
+      "MSE": 35238.3774,
+      "RMSE": 187.7189,
+      "R2": 0.9603
     },
     "baseline": {
       "MAE": 794.2322,
       "MSE": 892249.5097,
       "RMSE": 944.5896,
       "R2": -0.0056
+    },
+    "sklearn_reference": {
+      "MAE": 72.6888,
+      "MSE": 10463.7445,
+      "RMSE": 102.2924,
+      "R2": 0.9882
     }
   },
-  "pca_explained_variance_ratio": [
-    0.5424828246757664,
-    0.1666306296732639
-  ],
+  "pca_metrics": {
+    "explained_variance_ratio": [
+      0.5335823392822532,
+      0.17730847058665453
+    ],
+    "reconstruction_error": 0.29651787889031345
+  },
   "clustering": {
-    "kmeans_silhouette": 0.4725954300539691,
-    "gmm_silhouette": 0.4820791297416621
+    "kmeans": {
+      "silhouette": 0.49656634993560145,
+      "davies_bouldin": 0.7271147053989091,
+      "calinski_harabasz": 4967.231880826723
+    },
+    "gmm": {
+      "silhouette": 0.46444069257696763,
+      "davies_bouldin": 0.7379870589080454,
+      "calinski_harabasz": 3764.4955001656663
+    }
   }
 }

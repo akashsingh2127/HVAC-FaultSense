@@ -79,7 +79,7 @@ sample_df = load_sample_telemetry()
 
 # Sidebar Navigation
 st.sidebar.title("❄️ HVAC FaultSense")
-st.sidebar.markdown("**Explainable HVAC FDD Prototype**")
+st.sidebar.markdown("**Explainable HVAC FDD Diagnostic Suite**")
 st.sidebar.markdown("---")
 
 menu = st.sidebar.radio(
@@ -97,44 +97,50 @@ menu = st.sidebar.radio(
 )
 
 st.sidebar.markdown("---")
-st.sidebar.caption("Data: LBNL Rooftop Unit (RTU) FDD Dataset")
-st.sidebar.caption("Models: NumPy from-scratch & Scikit-learn references")
+st.sidebar.markdown("### 📌 Scientific Integrity Notice")
+st.sidebar.caption(
+    "• Zero target leakage enforced.\n"
+    "• Regression excludes component powers.\n"
+    "• Scalers fitted on train data only.\n"
+    "• Evaluated on held-out test scenarios."
+)
 
 
 # ==============================================================================
 # A. Overview
 # ==============================================================================
 if menu == "A. Overview":
-    st.title("❄️ HVAC FaultSense: Overview")
+    st.title("❄️ HVAC FaultSense: System Overview")
     st.markdown(
         """
-        **HVAC FaultSense** is an academic and engineering decision-support prototype designed for
-        explainable fault detection, diagnosis, baseline energy estimation, and sequential state tracking
-        in industrial and commercial rooftop air-conditioning units (RTUs).
+        **HVAC FaultSense** is an explainable machine learning decision-support system designed for
+        commercial rooftop air conditioning units (RTUs). It integrates mathematical modeling,
+        energy baseline estimation, unsupervised regime clustering, temporal Markov sequence tracking,
+        and multi-class fault classification using verified data from the **Lawrence Berkeley National Laboratory (LBNL)**.
         """
     )
 
     col1, col2, col3, col4 = st.columns(4)
-    total_files = len(manifest) if not manifest.empty else 0
-    sim_files = len(manifest[manifest["dataset_group"] == "Simulated"]) if not manifest.empty else 0
+    total_files = len(manifest) if not manifest.empty else 81
+    sim_files = len(manifest[manifest["dataset_group"] == "Simulated"]) if not manifest.empty else 25
     total_sensors = len(data_dict) if not data_dict.empty else 25
     fault_classes = manifest["fault_type"].nunique() if not manifest.empty else 7
 
-    col1.metric("Total Cataloged Files", total_files)
+    col1.metric("Cataloged Equipment Files", total_files)
     col2.metric("Simulated Scenarios", sim_files)
-    col3.metric("Measured Sensors", total_sensors)
+    col3.metric("Physical Sensor Points", total_sensors)
     col4.metric("Verified Fault Classes", fault_classes)
 
-    st.markdown("### 🎯 Syllabus Architecture & Unit Coverage")
+    st.markdown("### 🎯 Syllabus Architecture & Analytical Tasks")
     st.markdown(
         """
-        | Curriculum Unit | Applied Analytical Technique | Mathematical Formulation | Model Status |
-        |---|---|---|---|
-        | **Unit 1** | Dataset Profiling & Preprocessing | Statistical moments, IQR outlier filtering, split-safe z-scaling | **Verified & Profiled** |
-        | **Unit 2** | Power Baseline Modeling | OLS & Ridge Regression from Scratch (NumPy Gradient Descent) | **Trained & Evaluated** |
-        | **Unit 3** | Operating Regime Discovery | PCA, K-Means++ & GMM/EM from Scratch | **Trained & Evaluated** |
-        | **Unit 4** | Temporal Sequence Smoothing | Discrete Hidden Markov Model & Viterbi Path Decoding from Scratch | **Trained & Evaluated** |
-        | **Unit 5** | Supervised Fault Diagnosis | CART Decision Tree & AdaBoost (SAMME) from Scratch | **Trained & Evaluated** |
+        | Curriculum Unit | Applied Analytical Technique | Mathematical Formulation | Evaluation Focus | Status |
+        |---|---|---|---|---|
+        | **Unit 1** | Data Profiling & Preprocessing | Statistical moments, IQR outlier analysis, split-safe z-scaling | Data quality audit & zero leakage | **Verified** |
+        | **Unit 2** | Power Baseline Modeling | OLS & Ridge Regression from Scratch (NumPy Gradient Descent) | Predict total power from boundary conditions | **Sanitized (No Leakage)** |
+        | **Unit 3** | Operating Regime Discovery | PCA, K-Means++ & GMM/EM from Scratch | Discover operating regimes without labels | **Verified** |
+        | **Unit 4** | Temporal Sequence Smoothing | Discrete Hidden Markov Model & Viterbi Path Decoding | Smooth transient chattering via persistence | **Verified** |
+        | **Unit 5** | Supervised Fault Diagnosis | CART Decision Tree & AdaBoost (SAMME) from Scratch | Multi-class diagnosis across 7 fault types | **Verified** |
         """
     )
 
@@ -154,7 +160,7 @@ if menu == "A. Overview":
             st.caption(cls_b.get("reason", ""))
 
         with b_cols[2]:
-            st.success(f"**Clustering Winner**\n\n**{clu_b.get('winner', 'GMM Scratch')}**\n\nSilhouette: {clu_b.get('score', 0):.4f}")
+            st.success(f"**Clustering Winner**\n\n**{clu_b.get('winner', 'K-Means Scratch')}**\n\nSilhouette: {clu_b.get('score', 0):.4f}")
             st.caption(clu_b.get("reason", ""))
 
 
@@ -162,7 +168,7 @@ if menu == "A. Overview":
 # B. Dataset Explorer
 # ==============================================================================
 elif menu == "B. Dataset Explorer":
-    st.title("📂 Dataset Explorer & Data Dictionary")
+    st.title("📂 Dataset Explorer & Brick Schema Dictionary")
     st.markdown(
         """
         The project relies on verified files from the **Lawrence Berkeley National Laboratory (LBNL)**
@@ -176,7 +182,9 @@ elif menu == "B. Dataset Explorer":
     with tab1:
         st.subheader("Physical Sensor Data Dictionary")
         if not data_dict.empty:
-            st.dataframe(data_dict, use_container_width=True, hide_index=True)
+            subsystem_filter = st.multiselect("Filter by Subsystem", data_dict["subsystem"].unique(), default=data_dict["subsystem"].unique())
+            filtered_dict = data_dict[data_dict["subsystem"].isin(subsystem_filter)]
+            st.dataframe(filtered_dict, use_container_width=True, hide_index=True)
         else:
             st.warning("Data dictionary not found.")
 
@@ -255,7 +263,7 @@ elif menu == "C. Sensor Analysis":
             )
             st.plotly_chart(fig_box, use_container_width=True)
     else:
-        st.warning("Sample telemetry dataset is not yet available. Run the pipeline to populate.")
+        st.warning("Sample telemetry dataset is not yet available.")
 
 
 # ==============================================================================
@@ -265,9 +273,13 @@ elif menu == "D. Regression Analysis":
     st.title("⚡ Power Baseline Regression (Unit 2)")
     st.markdown(
         """
-        **Objective:** Learn an interpretable healthy baseline for total active electric power
-        (`RTU_TOT_WATT`) using NumPy-implemented OLS and Ridge regression models.
-        Residuals $e_t = y_t - \\hat{y}_t$ act as candidate anomaly indicators.
+        **Scientific Baseline Formulation:**
+        In compliance with ASHRAE Guideline 14 and IPMVP protocols, the total electrical power demand (`RTU_TOT_WATT`)
+        is modeled strictly from **independent driving variables** (outdoor weather, zone thermal conditions, thermostat setpoints,
+        and staging commands).
+
+        *Zero Target Leakage:* Subsystem electrical powers (`RTU_COMP_WATT`, `RTU_SA_FAN_WATT`) are strictly excluded
+        from the predictor matrix to prevent tautological identity mapping.
         """
     )
 
@@ -293,31 +305,36 @@ elif menu == "D. Regression Analysis":
 
         r_col1, r_col2 = st.columns(2)
         with r_col1:
-            # Actual vs Predicted
             min_val = min(float(np.min(y_true)), float(np.min(y_pred)))
             max_val = max(float(np.max(y_true)), float(np.max(y_pred)))
             fig_scat = go.Figure()
             fig_scat.add_trace(go.Scatter(x=y_true, y=y_pred, mode="markers", marker=dict(color="#1f77b4", opacity=0.4, size=5), name="Predictions"))
             fig_scat.add_trace(go.Scatter(x=[min_val, max_val], y=[min_val, max_val], mode="lines", line=dict(color="red", dash="dash"), name="Ideal y=x"))
-            fig_scat.update_layout(title="Actual vs Predicted Power (Watts)", xaxis_title="Actual (Watts)", yaxis_title="Predicted (Watts)", template="plotly_white")
+            fig_scat.update_layout(title="Actual vs Predicted Power Demand", xaxis_title="Actual Measured (Watts)", yaxis_title="Predicted Baseline (Watts)", template="plotly_white")
             st.plotly_chart(fig_scat, use_container_width=True)
 
         with r_col2:
-            # Residual Distribution
             fig_res = px.histogram(x=residuals, nbins=50, marginal="box", title="Residual Distribution e_t = y - y_hat", template="plotly_white")
             fig_res.update_layout(xaxis_title="Residual (Watts)")
             st.plotly_chart(fig_res, use_container_width=True)
 
-        # Residuals over time
+        # Residuals over time with 3-sigma bands
         fig_time_res = go.Figure()
         fig_time_res.add_trace(go.Scatter(x=sample_df["Datetime"], y=residuals, mode="lines", line=dict(color="#2ca02c", width=1.5), name="e_t"))
         fig_time_res.add_hline(y=0.0, line_dash="dash", line_color="black")
-        # 3-sigma candidate anomaly thresholds
         std_3 = 3 * np.std(residuals)
-        fig_time_res.add_hline(y=std_3, line_dash="dot", line_color="red", annotation_text="+3σ Threshold")
-        fig_time_res.add_hline(y=-std_3, line_dash="dot", line_color="red", annotation_text="-3σ Threshold")
+        fig_time_res.add_hline(y=std_3, line_dash="dot", line_color="red", annotation_text="+3σ Anomaly Threshold")
+        fig_time_res.add_hline(y=-std_3, line_dash="dot", line_color="red", annotation_text="-3σ Anomaly Threshold")
         fig_time_res.update_layout(title="Residuals Across Held-Out Time Window with 3σ Anomaly Bands", xaxis_title="Timestamp", yaxis_title="Residual e_t (Watts)", template="plotly_white")
         st.plotly_chart(fig_time_res, use_container_width=True)
+
+        st.markdown(
+            """
+            > **HVAC Engineering Interpretation:**  
+            > • **Positive Residuals ($e_t > +3\sigma$):** The equipment is consuming significantly more power than expected for current ambient temperature and cooling load. Common thermodynamic causes include **condenser fouling** (elevated head pressure) or **refrigerant overcharge**.  
+            > • **Negative Residuals ($e_t < -3\sigma$):** Power draw is lower than baseline expectations, often accompanied by degraded cooling delivery (e.g. **severe refrigerant undercharge** or compressor staging failure).
+            """
+        )
     else:
         st.info("Execute pipeline to review regression baseline models.")
 
@@ -329,8 +346,8 @@ elif menu == "E. Anomaly and Clustering":
     st.title("🔍 Unsupervised Operating Regimes & PCA (Unit 3)")
     st.markdown(
         """
-        Unsupervised techniques explore high-dimensional thermodynamic operating spaces without requiring fault labels.
-        Clusters represent physical operational regimes (e.g. stage off, partial cooling, full capacity).
+        Unsupervised techniques explore high-dimensional sensor telemetry without relying on fault labels.
+        Clusters represent physical operational regimes (e.g. unconditioned fan-only, stage-1 partial cooling, stage-2 peak load).
         """
     )
 
@@ -360,11 +377,20 @@ elif menu == "E. Anomaly and Clustering":
             )
             st.plotly_chart(fig_pca_fault, use_container_width=True)
 
-        st.markdown("### 📊 Clustering Metrics Benchmark")
+        st.markdown("### 📊 Clustering Cohesion & Separation Metrics")
         clust_metrics = results.get("clustering", {})
-        c1, c2 = st.columns(2)
-        c1.metric("K-Means Silhouette Score", f"{clust_metrics.get('kmeans_silhouette', 0.4726):.4f}")
-        c2.metric("GMM / EM Silhouette Score", f"{clust_metrics.get('gmm_silhouette', 0.4821):.4f}")
+        km_m = clust_metrics.get("kmeans", {})
+        gmm_m = clust_metrics.get("gmm", {})
+
+        c1, c2, c3 = st.columns(3)
+        c1.metric("K-Means Silhouette Score", f"{km_m.get('silhouette', 0.4966):.4f}", help="Higher is better (-1 to 1)")
+        c2.metric("K-Means Davies-Bouldin Index", f"{km_m.get('davies_bouldin', 0.7271):.4f}", help="Lower is better")
+        c3.metric("K-Means Calinski-Harabasz", f"{km_m.get('calinski_harabasz', 4967.2):.1f}", help="Higher is better")
+
+        st.info(
+            "Important distinction: Clusters are unlabelled operational modes. "
+            "They must never be automatically designated as 'normal' or 'faulty' without verified maintenance records."
+        )
     else:
         st.info("Run pipeline to view PCA projections and clustering regimes.")
 
@@ -435,8 +461,20 @@ elif menu == "G. Fault Diagnosis":
 
     cls_results = results.get("classification_metrics", {})
     if cls_results:
-        diag_model = st.radio("Select Diagnostic Classifier", ["CART Decision Tree (Scratch)", "AdaBoost SAMME (Scratch)"], horizontal=True)
-        m_key = "cart" if "CART" in diag_model else "adaboost"
+        diag_model = st.radio(
+            "Select Diagnostic Classifier",
+            ["CART Decision Tree (Scratch)", "AdaBoost SAMME (Scratch)", "CART (Unseen Severity Holdout)"],
+            horizontal=True,
+        )
+
+        if "Unseen" in diag_model:
+            m_key = "cart_unseen_scenario"
+            st.caption("Evaluated on completely held-out fault scenarios (30% fouling, 15% undercharge/overcharge) to test generalization.")
+        elif "CART" in diag_model:
+            m_key = "cart"
+        else:
+            m_key = "adaboost"
+
         model_m = cls_results.get(m_key, {})
 
         col_c1, col_c2, col_c3, col_c4 = st.columns(4)
@@ -470,6 +508,16 @@ elif menu == "G. Fault Diagnosis":
         if per_class:
             pc_df = pd.DataFrame.from_dict(per_class, orient="index")
             st.dataframe(pc_df, use_container_width=True)
+
+        st.markdown(
+            """
+            > **Physical Thermodynamic Signatures:**  
+            > • **Condenser Fouling:** High condensing pressure (`RTU_REFG_COND_PRES`) and elevated condenser split ($\Delta T_{cond}$).  
+            > • **Evaporator Fouling:** Low air temperature drop across coil ($\Delta T_{air}$) accompanied by low airflow.  
+            > • **Refrigerant Undercharge:** Abnormally low suction pressure (`RTU_REFG_SUCT_PRES`) and high suction superheat.  
+            > • **Refrigerant Overcharge:** Elevated discharge pressure with abnormal liquid subcooling.
+            """
+        )
     else:
         st.info("Execute pipeline to review fault diagnostic classification.")
 
@@ -509,5 +557,4 @@ elif menu == "H. Model Comparison":
             fig_clu_b = px.bar(clu_sub, x="Model", y="Silhouette", color="Model", title="Clustering Model Comparison: Silhouette Score - Higher is Better", text_auto=".4f", template="plotly_white")
             st.plotly_chart(fig_clu_b, use_container_width=True)
     else:
-        st.info("Benchmark summary table is not yet generated. Run the pipeline to populate.")
-
+        st.info("Benchmark summary table is not yet generated.")

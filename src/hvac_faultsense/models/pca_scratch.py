@@ -71,3 +71,10 @@ class PCAScratch:
             raise ValueError("PCA is not fitted.")
         return (X_pca @ self.components_) + self.mean_
 
+    def compute_reconstruction_error(self, X: np.ndarray) -> float:
+        """Compute mean squared reconstruction error: (1/n) * ||X - X_recon||_F^2."""
+        X = np.asarray(X, dtype=np.float64)
+        X_trans = self.transform(X)
+        X_recon = self.inverse_transform(X_trans)
+        return float(np.mean((X - X_recon) ** 2))
+

@@ -97,7 +97,6 @@ def split_time_and_scenario_aware(
     test_dfs = []
 
     if scenario_col not in df.columns:
-        # Single scenario chronological split
         sorted_df = df.sort_values(time_col).reset_index(drop=True)
         split_idx = int(len(sorted_df) * (1 - test_ratio))
         return sorted_df.iloc[:split_idx].copy(), sorted_df.iloc[split_idx:].copy()
@@ -115,6 +114,17 @@ def split_time_and_scenario_aware(
     return df_train, df_test
 
 
+def split_scenario_holdout(
+    df: pd.DataFrame,
+    holdout_scenarios: List[str],
+    scenario_col: str = "scenario_name",
+) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    """Perform scenario-aware holdout splitting to test generalisation to unseen fault severities."""
+    train_mask = ~df[scenario_col].isin(holdout_scenarios)
+    test_mask = df[scenario_col].isin(holdout_scenarios)
+    return df[train_mask].copy().reset_index(drop=True), df[test_mask].copy().reset_index(drop=True)
+
+
 def prepare_feature_matrices(
     df_train: pd.DataFrame,
     df_test: pd.DataFrame,
@@ -127,7 +137,6 @@ def prepare_feature_matrices(
     Returns:
         X_train_scaled, X_test_scaled, y_train_reg, y_test_reg, y_train_cls, y_test_cls, scaler
     """
-    # Verify features exist
     available_features = [f for f in feature_cols if f in df_train.columns and f != target_col]
 
     # Handle missing values: fit medians on train only
@@ -141,12 +150,11 @@ def prepare_feature_matrices(
     X_test_scaled = scaler.transform(X_test_clean)
 
     # Continuous regression target
-    y_train_reg = df_train[target_col].to_numpy(dtype=np.float64)
-    y_test_reg = df_test[target_col].to_numpy(dtype=np.float64)
+    y_train_reg = df_train[target_col].to_numpy(dtype=np.float64) if target_col in df_train.columns else np.array([])
+    y_test_reg = df_test[target_col].to_numpy(dtype=np.float64) if target_col in df_test.columns else np.array([])
 
     # Supervised classification labels
-    y_train_cls = df_train[label_col].to_numpy()
-    y_test_cls = df_test[label_col].to_numpy()
+    y_train_cls = df_train[label_col].to_numpy() if label_col in df_train.columns else np.array([])
+    y_test_cls = df_test[label_col].to_numpy() if label_col in df_test.columns else np.array([])
 
     return X_train_scaled, X_test_scaled, y_train_reg, y_test_reg, y_train_cls, y_test_cls, scaler
-

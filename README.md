@@ -1,7 +1,7 @@
 # HVAC FaultSense
 ## Explainable HVAC Fault Detection, Diagnosis & Early-Warning System
 
-> **Project Status:** Implemented, Evaluated & Validated  
+> **Project Status:** Implemented, Audited, Evaluated & Validated  
 > **Domain:** Commercial Rooftop Air Conditioning Units (RTU) Fault Detection & Diagnostics (FDD)  
 > **Primary Dataset:** Lawrence Berkeley National Laboratory (LBNL) RTU Dataset (25 Simulated Scenarios + Field & Lab Repositories)  
 > **Core Implementations:** From-scratch NumPy implementations for all major curriculum algorithms  
@@ -14,10 +14,10 @@ HVAC FaultSense is an explainable machine learning system for analyzing HVAC sen
 
 | Unit | Syllabus Focus | Custom Algorithm (NumPy from Scratch) | Evaluation Role | Best Metric |
 |---|---|---|---|---|
-| **Unit 1** | Dataset Profiling & Preprocessing | Statistical moments, IQR outlier filtering, split-safe z-scaling | Data quality audit & leakage prevention | 0% missing values across 3.6M points |
-| **Unit 2** | Power Baseline Regression | `LinearRegressionScratch` & `RidgeRegressionScratch` (Gradient Descent) | Continuous expected power estimation & residual tracking | **OLS $R^2 = 0.9983$, RMSE = 38.98 W** |
-| **Unit 3** | Operating Regime Discovery | `PCAScratch`, `KMeansScratch`, `GaussianMixtureScratch` (EM) | Unsupervised operating mode partitioning | **GMM Silhouette = 0.4821** (PC1+PC2: 70.91% var) |
-| **Unit 4** | Probabilistic Sequence Tracking | `DiscreteHMMViterbiScratch` (Log-space Trellis Dynamic Programming) | Temporal smoothing & chatter reduction | Optimal latent sequence ($\ln P^* = -2805.39$) |
+| **Unit 1** | Dataset Profiling & Preprocessing | Statistical moments, IQR outlier filtering, split-safe z-scaling | Data quality audit & zero leakage | 0% missing values across 3.6M points |
+| **Unit 2** | Power Baseline Regression | `LinearRegressionScratch` & `RidgeRegressionScratch` (Gradient Descent) | Predict total power from boundary conditions | **OLS $R^2 = 0.9840$, RMSE = 119.31 W** |
+| **Unit 3** | Operating Regime Discovery | `PCAScratch`, `KMeansScratch`, `GaussianMixtureScratch` (EM) | Unsupervised operating mode partitioning | **K-Means Silhouette = 0.4966** (PC1+PC2: 71.09% var) |
+| **Unit 4** | Probabilistic Sequence Tracking | `DiscreteHMMViterbiScratch` (Log-space Trellis Dynamic Programming) | Temporal smoothing & chatter reduction | Optimal latent sequence ($\ln P^* = -2761.80$) |
 | **Unit 5** | Supervised Fault Classification | `DecisionTreeClassifierScratch` (CART Gini) & `AdaBoostClassifierScratch` (SAMME) | Multi-class fault diagnosis across 7 verified categories | **CART Accuracy = 71.86%, Macro-F1 = 0.5830** |
 
 ---
@@ -34,6 +34,7 @@ HVAC FaultSense utilizes official files from the **Lawrence Berkeley National La
 - **Physical Sensors:** 25 verified channels mapped directly to the **Brick Schema RDF ontology** (`LBNL_FDD_Data_Sets_RTU_Sim.ttl`).
 - **Separated Datasets:** Simulated (`data/raw/simulated/`), Field (`data/raw/field/`), and Laboratory (`data/raw/laboratory/`) data are cataloged independently.
 - **No Fabricated Columns:** No mock labels or artificial column names were used.
+- **Temporal Downsampling:** Downsampled via `stride=15` to $239,925$ rows ($9,597$ rows per scenario). This preserves diurnal and seasonal thermal dynamics (building thermal time constants typically range from 30 to 120 minutes) while allowing rapid, memory-safe execution.
 
 ---
 
@@ -41,19 +42,20 @@ HVAC FaultSense utilizes official files from the **Lawrence Berkeley National La
 
 All models were evaluated on the strictly held-out test split ($60,000$ test records, $179,925$ training records) using time-aware and scenario-aware partitioning to prevent data leakage.
 
-| Model | Analytical Task | MAE (W) | RMSE (W) | $R^2$ | Accuracy | Precision | Recall | Macro-F1 | Silhouette | Train Time (s) |
-|---|---|---|---|---|---|---|---|---|---|---|
-| **Mean Baseline** | Regression | 794.2322 | 944.5896 | -0.0056 | N/A | N/A | N/A | N/A | N/A | 0.001 |
-| **OLS Regression (Scratch)** | Regression | **29.9171** | **38.9816** | **0.9983** | N/A | N/A | N/A | N/A | N/A | 36.101 |
-| **Ridge Regression (Scratch)** | Regression | 137.9101 | 169.0907 | 0.9678 | N/A | N/A | N/A | N/A | N/A | 4.271 |
-| **Linear Regression (Reference)** | Regression | 0.0000 | 0.0000 | 1.0000 | N/A | N/A | N/A | N/A | N/A | 0.840 |
-| **K-Means (Scratch)** | Clustering | N/A | N/A | N/A | N/A | N/A | N/A | N/A | 0.4726 | 7.263 |
-| **GMM / EM (Scratch)** | Clustering | N/A | N/A | N/A | N/A | N/A | N/A | N/A | **0.4821** | 5.316 |
-| **Majority Class Baseline** | Classification | N/A | N/A | N/A | 0.2000 | 0.0286 | 0.1429 | 0.0476 | N/A | 0.157 |
-| **CART Decision Tree (Scratch)** | Classification | N/A | N/A | N/A | **0.7186** | **0.6766** | **0.5953** | **0.5830** | N/A | 12.033 |
-| **AdaBoost SAMME (Scratch)** | Classification | N/A | N/A | N/A | 0.6447 | 0.5242 | 0.5192 | 0.5022 | N/A | 90.155 |
-| **CART Decision Tree (Reference)** | Classification | N/A | N/A | N/A | 0.6725 | 0.7025 | 0.5695 | 0.5347 | N/A | 4.318 |
-| **AdaBoost (Reference)** | Classification | N/A | N/A | N/A | 0.5986 | 0.4346 | 0.4733 | 0.4285 | N/A | 27.821 |
+| Model | Analytical Task | MAE (W) | RMSE (W) | $R^2$ | Accuracy | Precision | Recall | Macro-F1 | Silhouette | Davies-Bouldin | Calinski-Harabasz | Training Time (s) |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **Mean Baseline** | Regression | 794.2322 | 944.5896 | -0.0056 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | 0.000 |
+| **OLS Regression (Scratch)** | Regression | 92.2755 | 119.3139 | 0.9840 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | 10.293 |
+| **Ridge Regression (Scratch)** | Regression | 156.4354 | 187.7189 | 0.9603 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | 3.200 |
+| **Linear Regression (Reference)** | Regression | **72.6888** | **102.2924** | **0.9882** | N/A | N/A | N/A | N/A | N/A | N/A | N/A | 0.150 |
+| **K-Means (Scratch)** | Clustering | N/A | N/A | N/A | N/A | N/A | N/A | N/A | **0.4966** | **0.7271** | **4967.2** | 3.206 |
+| **GMM / EM (Scratch)** | Clustering | N/A | N/A | N/A | N/A | N/A | N/A | N/A | 0.4644 | 0.7380 | 3764.5 | 6.217 |
+| **Majority Class Baseline** | Classification | N/A | N/A | N/A | 0.2000 | 0.0286 | 0.1429 | 0.0476 | N/A | N/A | N/A | 0.107 |
+| **CART Decision Tree (Scratch)** | Classification | N/A | N/A | N/A | **0.7186** | **0.6766** | **0.5953** | **0.5830** | N/A | N/A | N/A | 7.771 |
+| **AdaBoost SAMME (Scratch)** | Classification | N/A | N/A | N/A | 0.6436 | 0.4990 | 0.5167 | 0.4908 | N/A | N/A | N/A | 50.189 |
+| **CART Decision Tree (Reference)** | Classification | N/A | N/A | N/A | 0.6725 | 0.7279 | 0.5695 | 0.5346 | N/A | N/A | N/A | 3.550 |
+| **AdaBoost (Reference)** | Classification | N/A | N/A | N/A | 0.6196 | 0.4708 | 0.4953 | 0.4745 | N/A | N/A | N/A | 18.660 |
+| **CART (Unseen Severity Holdout)** | Classification | N/A | N/A | N/A | 0.5777 | 0.6751 | 0.4622 | 0.4954 | N/A | N/A | N/A | 0.000 |
 
 ---
 
@@ -88,6 +90,10 @@ HVAC FaultSense/
 │
 ├── docs/
 │   ├── architecture.md
+│   ├── audit/
+│   │   ├── initial-audit.md
+│   │   ├── data-leakage-audit.md
+│   │   └── final-audit-report.md
 │   ├── dataset/
 │   │   ├── dataset_overview.md
 │   │   ├── data_dictionary.md
@@ -141,6 +147,7 @@ HVAC FaultSense/
 │   └── README.md
 │
 ├── reports/
+│   ├── figures/
 │   └── results/
 │       ├── benchmark_summary.csv
 │       ├── experiment_results.json
@@ -154,7 +161,8 @@ HVAC FaultSense/
     ├── test_pca_kmeans.py
     ├── test_hmm_viterbi.py
     ├── test_classifiers.py
-    └── test_no_data_leakage.py
+    ├── test_no_data_leakage.py
+    └── test_dashboard_contracts.py
 ```
 
 ---
@@ -162,8 +170,8 @@ HVAC FaultSense/
 ## 5. Quickstart & Installation
 
 ### Step 1: Environment Setup
-```bash
-# Clone or navigate to the repository
+```powershell
+# Navigate to repository
 cd "c:\Users\Akash Singh\Desktop\HVAC FaultSense"
 
 # Install dependencies
@@ -171,22 +179,22 @@ pip install -r requirements.txt
 pip install -e . --no-build-isolation --no-deps
 ```
 
-### Step 2: Download Dataset & Run Pipeline
-```bash
-# Download official LBNL RTU archive (if not already downloaded)
+### Step 2: Download Dataset & Run Sanitized Pipeline
+```powershell
+# Acquire official LBNL RTU dataset
 python src/hvac_faultsense/data/download.py
 
 # Execute end-to-end training and evaluation pipeline
 python src/hvac_faultsense/pipeline.py
 ```
 
-### Step 3: Run Test Suite
-```bash
-python -m pytest tests
+### Step 3: Run Automated Test Suite
+```powershell
+python -m pytest tests -v
 ```
 
-### Step 4: Launch Interactive Streamlit Frontend
-```bash
+### Step 4: Launch Interactive Streamlit Diagnostic Dashboard
+```powershell
 streamlit run app/streamlit_app.py
 ```
 

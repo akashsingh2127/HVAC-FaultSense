@@ -24,6 +24,9 @@ class ModelResultRecord:
     recall: Optional[float] = None
     macro_f1: Optional[float] = None
     silhouette: Optional[float] = None
+    davies_bouldin: Optional[float] = None
+    calinski_harabasz: Optional[float] = None
+    reconstruction_error: Optional[float] = None
     training_time_sec: float = 0.0
     n_train_samples: int = 0
     n_test_samples: int = 0
@@ -58,6 +61,8 @@ class ModelComparisonRegistry:
                 "Recall": f"{r.recall:.4f}" if r.recall is not None else "N/A",
                 "Macro-F1": f"{r.macro_f1:.4f}" if r.macro_f1 is not None else "N/A",
                 "Silhouette": f"{r.silhouette:.4f}" if r.silhouette is not None else "N/A",
+                "Davies-Bouldin": f"{r.davies_bouldin:.4f}" if r.davies_bouldin is not None else "N/A",
+                "Calinski-Harabasz": f"{r.calinski_harabasz:.1f}" if r.calinski_harabasz is not None else "N/A",
                 "Train Time (s)": round(r.training_time_sec, 3),
                 "Train Samples": r.n_train_samples,
                 "Test Samples": r.n_test_samples,
