@@ -31,11 +31,15 @@ While the project has successfully downloaded and organized the official Lawrenc
 ## 3. Dataset Audit & Downsampling Verification
 
 1. **Official LBNL RTU Dataset Structure:**
-   - 25 simulated scenario CSV files in `data/raw/simulated/`
-   - 4 field operational CSV files in `data/raw/field/`
-   - 52 laboratory environmental chamber CSV files in `data/raw/laboratory/`
-   - 2 Brick Schema RDF ontology files in `data/raw/metadata/`
-   - Official technical report: `LBNL_FDD_Data_Sets_RTU.pdf` (1.6 MB)
+   - **81 Equipment Scenario CSV Files** (Cataloged in `dataset_manifest.csv`):
+     - 25 simulated scenario CSV files in `data/raw/simulated/`
+     - 4 field operational CSV files in `data/raw/field/`
+     - 52 laboratory environmental chamber CSV files in `data/raw/laboratory/`
+   - **2 Brick Schema RDF Ontology Files** in `data/raw/metadata/` (`LBNL_FDD_Data_Sets_RTU_Sim.ttl`, `LBNL_FDD_Data_Sets_RTU_Exp.ttl`)
+   - **2 Documentation & Source Archive Files** in `data/raw/`:
+     - 1 official technical report: `LBNL_FDD_Data_Sets_RTU.pdf` (1.6 MB)
+     - 1 original archive package: `LBNL_FDD_Data_Sets_RTU.zip` (291.4 MB)
+   - **Total Raw Files on Disk:** **85 files** in `data/raw/` (81 Scenario CSVs + 2 Metadata TTLs + 1 PDF report + 1 ZIP archive = 85 files; Subtotal of data and ontology files = 83 files).
 
 2. **Record Count Reconciliation:**
    - Raw records per file: $143,941$ rows

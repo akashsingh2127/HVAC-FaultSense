@@ -30,10 +30,15 @@ HVAC FaultSense utilizes official files from the **Lawrence Berkeley National La
 - **Dataset Publication:** Granderson et al. (2023), *A labeled dataset for building HVAC systems operating in faulted and fault-free states*, Nature Scientific Data. DOI: [10.1038/s41597-023-02197-w](https://doi.org/10.25984/1881324)
 
 ### Data Integrity Summary:
-- **25 Simulated RTU Scenarios:** 143,941 rows per scenario at 1-minute intervals (Total: 3,598,525 rows).
-- **Physical Sensors:** 25 verified channels mapped directly to the **Brick Schema RDF ontology** (`LBNL_FDD_Data_Sets_RTU_Sim.ttl`).
-- **Separated Datasets:** Simulated (`data/raw/simulated/`), Field (`data/raw/field/`), and Laboratory (`data/raw/laboratory/`) data are cataloged independently.
-- **No Fabricated Columns:** No mock labels or artificial column names were used.
+- **81 Equipment Scenario CSV Files (Cataloged in `dataset_manifest.csv`):**
+  - **25 Simulated RTU Scenarios:** 143,941 rows per scenario at 1-minute intervals (Total: 3,598,525 rows in `data/raw/simulated/`).
+  - **4 Field Operational Scenarios:** Real commercial building operational telemetry in `data/raw/field/`.
+  - **52 Laboratory Chamber Scenarios:** Multi-season environmental chamber experiments from ORNL in `data/raw/laboratory/`.
+- **2 Brick Schema RDF Ontologies:** `LBNL_FDD_Data_Sets_RTU_Sim.ttl` and `LBNL_FDD_Data_Sets_RTU_Exp.ttl` in `data/raw/metadata/` mapping all 25 physical sensors.
+- **2 Documentation & Source Archive Files:** Technical report (`LBNL_FDD_Data_Sets_RTU.pdf`) and distribution archive (`LBNL_FDD_Data_Sets_RTU.zip`) in `data/raw/`.
+- **Total Raw Files on Disk:** **85 files** in `data/raw/` (81 scenario CSVs + 2 metadata TTLs + 1 PDF + 1 ZIP = 85 files; 83 data and metadata files).
+- **Separated Datasets:** Simulated, Field, and Laboratory collections are cataloged independently and never silently blended.
+- **No Fabricated Columns:** All 25 physical sensor attributes follow verified ASHRAE / Brick Schema names.
 - **Temporal Downsampling:** Downsampled via `stride=15` to $239,925$ rows ($9,597$ rows per scenario). This preserves diurnal and seasonal thermal dynamics (building thermal time constants typically range from 30 to 120 minutes) while allowing rapid, memory-safe execution.
 
 ---

@@ -37,6 +37,23 @@ All reported metrics are verified, reproducible, and produced by actual runs on 
 ## 3. Dataset Integrity & Downsampling Findings
 
 - **Source Provenance:** Official LBNL RTU dataset portal (<https://faultdetection.lbl.gov/dataset/rtu/>).
+- **Physical Dataset Inventory in `data/raw/` (85 Total Files on Disk):**
+  - **81 Telemetry Scenario CSV Files** (Cataloged in `data/interim/dataset_manifest.csv`):
+    - 25 simulated scenario CSV files (`data/raw/simulated/`, 3,598,525 raw rows total)
+    - 4 field operational CSV files (`data/raw/field/`)
+    - 52 laboratory environmental chamber CSV files (`data/raw/laboratory/`)
+  - **2 Brick Schema Semantic Ontology Files** (`data/raw/metadata/`):
+    - `LBNL_FDD_Data_Sets_RTU_Sim.ttl` (Simulated RTU ontology)
+    - `LBNL_FDD_Data_Sets_RTU_Exp.ttl` (Experimental RTU ontology)
+  - **2 Documentation & Source Archive Files** (`data/raw/`):
+    - `LBNL_FDD_Data_Sets_RTU.pdf` (Official technical report, 1.6 MB)
+    - `LBNL_FDD_Data_Sets_RTU.zip` (Original downloaded distribution archive, 291.4 MB)
+  - *Mathematical Verification:*
+    $$\begin{aligned}
+    \text{Scenario CSV Files} &= 25 \text{ (sim)} + 4 \text{ (field)} + 52 \text{ (lab)} = 81 \\
+    \text{Data \& Ontology Files} &= 81 \text{ (CSVs)} + 2 \text{ (TTLs)} = 83 \\
+    \text{Total Raw Files on Disk} &= 83 + 1 \text{ (PDF)} + 1 \text{ (ZIP)} = 85
+    \end{aligned}$$
 - **Physical Sensor Schema:** 25 sensors verified against Brick Schema RDF ontology (`LBNL_FDD_Data_Sets_RTU_Sim.ttl`). Zero fabricated columns or synthetic sensor points.
 - **Data Quality:** Zero missing values ($0.0\%$), zero duplicate records, contiguous 1-minute sampling intervals across all 25 simulated scenarios ($3,598,525$ raw rows).
 - **Temporal Downsampling:** Downsampled via `stride=15` to $239,925$ rows ($9,597$ rows per scenario). This preserves diurnal and seasonal thermal dynamics (building thermal time constants typically range from 30 to 120 minutes) while allowing rapid, memory-safe execution.
@@ -118,7 +135,7 @@ tests/test_regression.py::test_mean_baseline_regressor PASSED            [100%]
 ## 6. Streamlit Dashboard Verification
 
 The interactive Streamlit dashboard (`app/streamlit_app.py`) was verified across all 8 modular pages:
-1. **A. Overview:** Verified dynamic loading of cataloged file counts ($81$), simulated scenarios ($25$), sensor channels ($25$), and top model metric cards.
+1. **A. Overview:** Verified dynamic loading of cataloged equipment scenario files ($81$ CSVs in manifest), simulated scenarios ($25$), sensor channels ($25$), and top model metric cards.
 2. **B. Dataset Explorer:** Verified interactive subsystem filtering on the Brick Schema Data Dictionary, scenario manifest filtering, and missing value audit chart.
 3. **C. Sensor Analysis:** Verified time-series telemetry charts, distribution histograms, and box plots grouped by fault class.
 4. **D. Regression Analysis:** Verified actual vs predicted power scatter plots, residual histograms, and $\pm 3\sigma$ threshold anomaly detection over time with thermodynamic physical interpretation.

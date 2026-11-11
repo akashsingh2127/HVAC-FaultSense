@@ -28,6 +28,21 @@ The LBNL RTU resource consists of three distinct experimental groupings:
    - 52 CSV files collected in the Oak Ridge National Laboratory (ORNL) Flexible Research Platform environmental chambers across Fall 2020, Spring 2021, Summer 2021, and Winter 2022.
    - Contains 57 measured thermodynamic and control channels.
 
+4. **Semantic Metadata & Ontologies (`data/raw/metadata/`):**
+   - 2 Brick Schema RDF Turtle files (`LBNL_FDD_Data_Sets_RTU_Sim.ttl` and `LBNL_FDD_Data_Sets_RTU_Exp.ttl`).
+
+5. **Technical Documentation & Source Archive (`data/raw/`):**
+   - `LBNL_FDD_Data_Sets_RTU.pdf` (1.6 MB official technical report).
+   - `LBNL_FDD_Data_Sets_RTU.zip` (291.4 MB original distribution archive).
+
+### File Count & Manifest Reconciliation:
+- **Equipment Telemetry Scenario CSV Files (Indexed in `dataset_manifest.csv`):**
+  $$25 \text{ (simulated)} + 4 \text{ (field)} + 52 \text{ (laboratory)} = \mathbf{81} \text{ CSV files}$$
+- **Data & Ontology Assets:**
+  $$81 \text{ (scenario CSVs)} + 2 \text{ (Brick Schema ontologies)} = \mathbf{83} \text{ files}$$
+- **Total Raw Files on Disk in `data/raw/`:**
+  $$83 \text{ (data/metadata)} + 1 \text{ (report PDF)} + 1 \text{ (source ZIP)} = \mathbf{85} \text{ files}$$
+
 ## 3. Discovered Schema vs Preliminary Assumptions
 
 Earlier project descriptions hypothesized arbitrary columns such as `high_pressure_1`, `low_pressure_1`, and `co2_1`.

@@ -23,12 +23,19 @@ data/
 │   ├── field/                           # 4 CSV files from operational building sites
 │   └── laboratory/                      # 52 CSV files from ORNL environmental chamber
 ├── interim/
-│   ├── dataset_manifest.csv             # Full catalog of 81 scenarios and fault severities
+│   ├── dataset_manifest.csv             # Full catalog of 81 scenario CSV files and fault severities
 │   └── data_dictionary.csv              # 25 sensor attributes with Brick Schema mappings
 └── processed/
     ├── test_evaluation_sample.parquet   # Held-out evaluation sample with model predictions
     └── test_evaluation_sample.csv       # CSV fallback for zero-dependency inspection
 ```
+
+### File Count Reconciliation:
+- **Telemetry Scenario CSV Files (Manifest):** $25 \text{ (simulated)} + 4 \text{ (field)} + 52 \text{ (laboratory)} = \mathbf{81} \text{ CSV files}$
+- **Semantic Metadata Files:** $2 \text{ Brick Schema Turtle ontologies } (\texttt{.ttl})$
+- **Data & Metadata Asset Subtotal:** $81 + 2 = \mathbf{83} \text{ files}$
+- **Technical Documentation & Source Archive:** $1 \text{ PDF report} + 1 \text{ ZIP archive} = 2 \text{ files}$
+- **Total Raw Files on Disk in `data/raw/`:** $81 + 2 + 1 + 1 = \mathbf{85} \text{ files}$
 
 ## 3. Data Integrity & Provenance Rules
 
