@@ -1,0 +1,257 @@
+@prefix bldg: <bldg-59#> .
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+
+bldg:RTU a brick:RTU ;
+    brick:feeds bldg:VAV_Box_102,
+        bldg:VAV_Box_103,
+        bldg:VAV_Box_104,
+        bldg:VAV_Box_105,
+        bldg:VAV_Box_106,
+        bldg:VAV_Box_202,
+        bldg:VAV_Box_203,
+        bldg:VAV_Box_204,
+        bldg:VAV_Box_205,
+        bldg:VAV_Box_206 ;
+    brick:hasPart bldg:Compressor,
+        bldg:Supply_fan ;
+    brick:hasPoint bldg:HVAC_TOT_WATT,
+        bldg:OCCU_MOD,
+        bldg:RTU_GAS_CSUM,
+        bldg:RTU_MA_TEMP,
+        bldg:RTU_OA_DMPR_DM,
+        bldg:RTU_OA_TEMP,
+        bldg:RTU_RA_DMPR_DM,
+        bldg:RTU_RA_TEMP,
+        bldg:RTU_SA_FLOW,
+        bldg:RTU_SA_TEMP,
+        bldg:RTU_TOT_WATT .
+
+bldg:Compressor a brick:Compressor ;
+    brick:hasPoint bldg:RTU_COMP_WATT_1,
+        bldg:RTU_COMP_WATT_2 .
+
+bldg:HVAC_TOT_WATT a brick:Electrical_Power_Sensor .
+
+bldg:OCCU_MOD a brick:Occupied_Mode_Status .
+
+bldg:RTU_COMP_WATT_1 a brick:Electrical_Power_Sensor .
+
+bldg:RTU_COMP_WATT_2 a brick:Electrical_Power_Sensor .
+
+bldg:RTU_GAS_CSUM a brick:Gas_Meter .
+
+bldg:RTU_MA_TEMP a brick:Mixed_Air_Temperature_Sensor .
+
+bldg:RTU_OA_DMPR_DM a brick:Damper_Position_Command .
+
+bldg:RTU_OA_TEMP a brick:Outside_Air_Temperature_Sensor .
+
+bldg:RTU_RA_DMPR_DM a brick:Damper_Position_Command .
+
+bldg:RTU_RA_TEMP a brick:Return_Air_Temperature_Sensor .
+
+bldg:RTU_SA_FAN_WATT a brick:Electrical_Power_Sensor .
+
+bldg:RTU_SA_FLOW a brick:Supply_Air_Flow_Sensor .
+
+bldg:RTU_SA_TEMP a brick:Supply_Air_Temperature_Sensor .
+
+bldg:RTU_TOT_WATT a brick:Electrical_Power_Sensor .
+
+bldg:Supply_fan a brick:Supply_Fan ;
+    brick:hasPoint bldg:RTU_SA_FAN_WATT .
+
+bldg:TERM_RM_HUMD_102 a brick:Zone_Air_Humidity_Sensor .
+
+bldg:TERM_RM_HUMD_103 a brick:Zone_Air_Humidity_Sensor .
+
+bldg:TERM_RM_HUMD_104 a brick:Zone_Air_Humidity_Sensor .
+
+bldg:TERM_RM_HUMD_105 a brick:Zone_Air_Humidity_Sensor .
+
+bldg:TERM_RM_HUMD_106 a brick:Zone_Air_Humidity_Sensor .
+
+bldg:TERM_RM_HUMD_202 a brick:Zone_Air_Humidity_Sensor .
+
+bldg:TERM_RM_HUMD_203 a brick:Zone_Air_Humidity_Sensor .
+
+bldg:TERM_RM_HUMD_204 a brick:Zone_Air_Humidity_Sensor .
+
+bldg:TERM_RM_HUMD_205 a brick:Zone_Air_Humidity_Sensor .
+
+bldg:TERM_RM_HUMD_206 a brick:Zone_Air_Humidity_Sensor .
+
+bldg:TERM_RM_TEMP_102 a brick:Zone_Air_Temperature_Sensor .
+
+bldg:TERM_RM_TEMP_103 a brick:Zone_Air_Temperature_Sensor .
+
+bldg:TERM_RM_TEMP_104 a brick:Zone_Air_Temperature_Sensor .
+
+bldg:TERM_RM_TEMP_105 a brick:Zone_Air_Temperature_Sensor .
+
+bldg:TERM_RM_TEMP_106 a brick:Zone_Air_Temperature_Sensor .
+
+bldg:TERM_RM_TEMP_202 a brick:Zone_Air_Temperature_Sensor .
+
+bldg:TERM_RM_TEMP_203 a brick:Zone_Air_Temperature_Sensor .
+
+bldg:TERM_RM_TEMP_204 a brick:Zone_Air_Temperature_Sensor .
+
+bldg:TERM_RM_TEMP_205 a brick:Zone_Air_Temperature_Sensor .
+
+bldg:TERM_RM_TEMP_206 a brick:Zone_Air_Temperature_Sensor .
+
+bldg:Terminal_Room_102 a brick:HVAC_Zone ;
+    brick:hasPoint bldg:TERM_RM_HUMD_102,
+        bldg:TERM_RM_TEMP_102,
+        bldg:TERM_RM_TEMP_CSPT,
+        bldg:TERM_RM_TEMP_HSPT .
+
+bldg:Terminal_Room_103 a brick:HVAC_Zone ;
+    brick:hasPoint bldg:TERM_RM_HUMD_103,
+        bldg:TERM_RM_TEMP_103,
+        bldg:TERM_RM_TEMP_CSPT,
+        bldg:TERM_RM_TEMP_HSPT .
+
+bldg:Terminal_Room_104 a brick:HVAC_Zone ;
+    brick:hasPoint bldg:TERM_RM_HUMD_104,
+        bldg:TERM_RM_TEMP_104,
+        bldg:TERM_RM_TEMP_CSPT,
+        bldg:TERM_RM_TEMP_HSPT .
+
+bldg:Terminal_Room_105 a brick:HVAC_Zone ;
+    brick:hasPoint bldg:TERM_RM_HUMD_105,
+        bldg:TERM_RM_TEMP_105,
+        bldg:TERM_RM_TEMP_CSPT,
+        bldg:TERM_RM_TEMP_HSPT .
+
+bldg:Terminal_Room_106 a brick:HVAC_Zone ;
+    brick:hasPoint bldg:TERM_RM_HUMD_106,
+        bldg:TERM_RM_TEMP_106,
+        bldg:TERM_RM_TEMP_CSPT,
+        bldg:TERM_RM_TEMP_HSPT .
+
+bldg:Terminal_Room_202 a brick:HVAC_Zone ;
+    brick:hasPoint bldg:TERM_RM_HUMD_202,
+        bldg:TERM_RM_TEMP_202,
+        bldg:TERM_RM_TEMP_CSPT,
+        bldg:TERM_RM_TEMP_HSPT .
+
+bldg:Terminal_Room_203 a brick:HVAC_Zone ;
+    brick:hasPoint bldg:TERM_RM_HUMD_203,
+        bldg:TERM_RM_TEMP_203,
+        bldg:TERM_RM_TEMP_CSPT,
+        bldg:TERM_RM_TEMP_HSPT .
+
+bldg:Terminal_Room_204 a brick:HVAC_Zone ;
+    brick:hasPoint bldg:TERM_RM_HUMD_204,
+        bldg:TERM_RM_TEMP_204,
+        bldg:TERM_RM_TEMP_CSPT,
+        bldg:TERM_RM_TEMP_HSPT .
+
+bldg:Terminal_Room_205 a brick:HVAC_Zone ;
+    brick:hasPoint bldg:TERM_RM_HUMD_205,
+        bldg:TERM_RM_TEMP_205,
+        bldg:TERM_RM_TEMP_CSPT,
+        bldg:TERM_RM_TEMP_HSPT .
+
+bldg:Terminal_Room_206 a brick:HVAC_Zone ;
+    brick:hasPoint bldg:TERM_RM_HUMD_206,
+        bldg:TERM_RM_TEMP_206,
+        bldg:TERM_RM_TEMP_CSPT,
+        bldg:TERM_RM_TEMP_HSPT .
+
+bldg:VAV_Box_102 a brick:Variable_Air_Volume_Box ;
+    brick:feeds bldg:Terminal_Room_102 ;
+    brick:hasPoint bldg:VAV_RM_SAT_102,
+        bldg:VAV_RM_WATT_102 .
+
+bldg:VAV_Box_103 a brick:Variable_Air_Volume_Box ;
+    brick:feeds bldg:Terminal_Room_103 ;
+    brick:hasPoint bldg:VAV_RM_SAT_103,
+        bldg:VAV_RM_WATT_103 .
+
+bldg:VAV_Box_104 a brick:Variable_Air_Volume_Box ;
+    brick:feeds bldg:Terminal_Room_104 ;
+    brick:hasPoint bldg:VAV_RM_SAT_104,
+        bldg:VAV_RM_WATT_104 .
+
+bldg:VAV_Box_105 a brick:Variable_Air_Volume_Box ;
+    brick:feeds bldg:Terminal_Room_105 ;
+    brick:hasPoint bldg:VAV_RM_SAT_105,
+        bldg:VAV_RM_WATT_105 .
+
+bldg:VAV_Box_106 a brick:Variable_Air_Volume_Box ;
+    brick:feeds bldg:Terminal_Room_106 ;
+    brick:hasPoint bldg:VAV_RM_SAT_106,
+        bldg:VAV_RM_WATT_106 .
+
+bldg:VAV_Box_202 a brick:Variable_Air_Volume_Box ;
+    brick:feeds bldg:Terminal_Room_202 ;
+    brick:hasPoint bldg:VAV_RM_SAT_202,
+        bldg:VAV_RM_WATT_202 .
+
+bldg:VAV_Box_203 a brick:Variable_Air_Volume_Box ;
+    brick:feeds bldg:Terminal_Room_203 ;
+    brick:hasPoint bldg:VAV_RM_SAT_203,
+        bldg:VAV_RM_WATT_203 .
+
+bldg:VAV_Box_204 a brick:Variable_Air_Volume_Box ;
+    brick:feeds bldg:Terminal_Room_204 ;
+    brick:hasPoint bldg:VAV_RM_SAT_204,
+        bldg:VAV_RM_WATT_204 .
+
+bldg:VAV_Box_205 a brick:Variable_Air_Volume_Box ;
+    brick:feeds bldg:Terminal_Room_205 ;
+    brick:hasPoint bldg:VAV_RM_SAT_205,
+        bldg:VAV_RM_WATT_205 .
+
+bldg:VAV_Box_206 a brick:Variable_Air_Volume_Box ;
+    brick:feeds bldg:Terminal_Room_206 ;
+    brick:hasPoint bldg:VAV_RM_SAT_206,
+        bldg:VAV_RM_WATT_206 .
+
+bldg:VAV_RM_SAT_102 a brick:Supply_Air_Temperature_Sensor .
+
+bldg:VAV_RM_SAT_103 a brick:Supply_Air_Temperature_Sensor .
+
+bldg:VAV_RM_SAT_104 a brick:Supply_Air_Temperature_Sensor .
+
+bldg:VAV_RM_SAT_105 a brick:Supply_Air_Temperature_Sensor .
+
+bldg:VAV_RM_SAT_106 a brick:Supply_Air_Temperature_Sensor .
+
+bldg:VAV_RM_SAT_202 a brick:Supply_Air_Temperature_Sensor .
+
+bldg:VAV_RM_SAT_203 a brick:Supply_Air_Temperature_Sensor .
+
+bldg:VAV_RM_SAT_204 a brick:Supply_Air_Temperature_Sensor .
+
+bldg:VAV_RM_SAT_205 a brick:Supply_Air_Temperature_Sensor .
+
+bldg:VAV_RM_SAT_206 a brick:Supply_Air_Temperature_Sensor .
+
+bldg:VAV_RM_WATT_102 a brick:Electrical_Power_Sensor .
+
+bldg:VAV_RM_WATT_103 a brick:Electrical_Power_Sensor .
+
+bldg:VAV_RM_WATT_104 a brick:Electrical_Power_Sensor .
+
+bldg:VAV_RM_WATT_105 a brick:Electrical_Power_Sensor .
+
+bldg:VAV_RM_WATT_106 a brick:Electrical_Power_Sensor .
+
+bldg:VAV_RM_WATT_202 a brick:Electrical_Power_Sensor .
+
+bldg:VAV_RM_WATT_203 a brick:Electrical_Power_Sensor .
+
+bldg:VAV_RM_WATT_204 a brick:Electrical_Power_Sensor .
+
+bldg:VAV_RM_WATT_205 a brick:Electrical_Power_Sensor .
+
+bldg:VAV_RM_WATT_206 a brick:Electrical_Power_Sensor .
+
+bldg:TERM_RM_TEMP_CSPT a brick:Zone_Air_Cooling_Temperature_Setpoint .
+
+bldg:TERM_RM_TEMP_HSPT a brick:Zone_Air_Heating_Temperature_Setpoint .
+

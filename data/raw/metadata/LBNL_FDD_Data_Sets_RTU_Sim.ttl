@@ -1,0 +1,89 @@
+@prefix bldg: <bldg-59#> .
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+
+bldg:RTU a brick:RTU ;
+    brick:feeds bldg:Zone ;
+    brick:hasPart bldg:compressor,
+        bldg:condenser,
+        bldg:supply_fan ;
+    brick:hasPoint bldg:RTU_OA_FLOW,
+        bldg:RTU_OA_HUM,
+        bldg:RTU_OA_TEMP,
+        bldg:RTU_RA_FLOW,
+        bldg:RTU_RA_HUM,
+        bldg:RTU_RA_TEMP,
+        bldg:RTU_SA_FLOW,
+        bldg:RTU_SA_HUM,
+        bldg:RTU_SA_TEMP,
+        bldg:RTU_SEN_CAPA,
+        bldg:RTU_TOT_CAPA,
+        bldg:RTU_TOT_WATT .
+
+bldg:RTU_COMP_WATT a brick:Electrical_Power_Sensor .
+
+bldg:RTU_OA_FLOW a brick:Outside_Air_Flow_Sensor .
+
+bldg:RTU_OA_HUM a brick:Outside_Air_Humidity_Sensor .
+
+bldg:RTU_OA_TEMP a brick:Outside_Air_Temperature_Sensor .
+
+bldg:RTU_RA_FLOW a brick:Return_Air_Flow_Sensor .
+
+bldg:RTU_RA_HUM a brick:Return_Air_Humidity_Sensor .
+
+bldg:RTU_RA_TEMP a brick:Return_Air_Temperature_Sensor .
+
+bldg:RTU_REFG_COND_PRES a brick:Pressure_Sensor .
+
+bldg:RTU_REFG_COND_TEMP a brick:Temperature_Sensor .
+
+bldg:RTU_REFG_DISC_PRES a brick:Pressure_Sensor .
+
+bldg:RTU_REFG_DISC_TEMP a brick:Discharge_Air_Temperature_Sensor .
+
+bldg:RTU_REFG_SUCT_PRES a brick:Pressure_Sensor .
+
+bldg:RTU_REFG_SUCT_TEMP a brick:Temperature_Sensor .
+
+bldg:RTU_SA_FAN_WATT a brick:Electrical_Power_Sensor .
+
+bldg:RTU_SA_FLOW a brick:Supply_Air_Flow_Sensor .
+
+bldg:RTU_SA_HUM a brick:Supply_Air_Humidity_Sensor .
+
+bldg:RTU_SA_TEMP a brick:Supply_Air_Temperature_Sensor .
+
+bldg:RTU_SEN_CAPA a brick:coolingCapacity .
+
+bldg:RTU_STG_STA a brick:On_Off_Status .
+
+bldg:RTU_TOT_CAPA a brick:coolingCapacity .
+
+bldg:RTU_TOT_WATT a brick:Electrical_Power_Sensor .
+
+bldg:ZA_HUM a brick:Zone_Air_Humidity_Sensor .
+
+bldg:ZA_TEMP a brick:Zone_Air_Temperature_Sensor .
+
+bldg:ZA_TEMP_SPT a brick:Zone_Air_Temperature_Setpoint .
+
+bldg:Zone a brick:HVAC_Zone ;
+    brick:hasPoint bldg:ZA_HUM,
+        bldg:ZA_TEMP,
+        bldg:ZA_TEMP_SPT .
+
+bldg:compressor a brick:Compressor ;
+    brick:hasPoint bldg:RTU_COMP_WATT,
+        bldg:RTU_REFG_DISC_PRES,
+        bldg:RTU_REFG_DISC_TEMP,
+        bldg:RTU_REFG_SUCT_PRES,
+        bldg:RTU_REFG_SUCT_TEMP,
+        bldg:RTU_STG_STA .
+
+bldg:condenser a brick:Condenser ;
+    brick:hasPoint bldg:RTU_REFG_COND_PRES,
+        bldg:RTU_REFG_COND_TEMP .
+
+bldg:supply_fan a brick:Supply_Fan ;
+    brick:hasPoint bldg:RTU_SA_FAN_WATT .
+

@@ -1,0 +1,473 @@
+{
+  "benchmark_summary": [
+    {
+      "Model": "Mean Baseline",
+      "Task": "Regression",
+      "MAE": "794.2322",
+      "RMSE": "944.5896",
+      "R2": "-0.0056",
+      "Accuracy": "N/A",
+      "Precision": "N/A",
+      "Recall": "N/A",
+      "Macro-F1": "N/A",
+      "Silhouette": "N/A",
+      "Train Time (s)": 0.001,
+      "Train Samples": 179925,
+      "Test Samples": 60000
+    },
+    {
+      "Model": "OLS Regression (Scratch)",
+      "Task": "Regression",
+      "MAE": "29.9171",
+      "RMSE": "38.9816",
+      "R2": "0.9983",
+      "Accuracy": "N/A",
+      "Precision": "N/A",
+      "Recall": "N/A",
+      "Macro-F1": "N/A",
+      "Silhouette": "N/A",
+      "Train Time (s)": 36.101,
+      "Train Samples": 179925,
+      "Test Samples": 60000
+    },
+    {
+      "Model": "Ridge Regression (Scratch)",
+      "Task": "Regression",
+      "MAE": "137.9101",
+      "RMSE": "169.0907",
+      "R2": "0.9678",
+      "Accuracy": "N/A",
+      "Precision": "N/A",
+      "Recall": "N/A",
+      "Macro-F1": "N/A",
+      "Silhouette": "N/A",
+      "Train Time (s)": 4.271,
+      "Train Samples": 179925,
+      "Test Samples": 60000
+    },
+    {
+      "Model": "Linear Regression (Reference)",
+      "Task": "Regression",
+      "MAE": "0.0000",
+      "RMSE": "0.0000",
+      "R2": "1.0000",
+      "Accuracy": "N/A",
+      "Precision": "N/A",
+      "Recall": "N/A",
+      "Macro-F1": "N/A",
+      "Silhouette": "N/A",
+      "Train Time (s)": 0.84,
+      "Train Samples": 179925,
+      "Test Samples": 60000
+    },
+    {
+      "Model": "K-Means (Scratch)",
+      "Task": "Clustering",
+      "MAE": "N/A",
+      "RMSE": "N/A",
+      "R2": "N/A",
+      "Accuracy": "N/A",
+      "Precision": "N/A",
+      "Recall": "N/A",
+      "Macro-F1": "N/A",
+      "Silhouette": "0.4726",
+      "Train Time (s)": 7.263,
+      "Train Samples": 179925,
+      "Test Samples": 60000
+    },
+    {
+      "Model": "GMM / EM (Scratch)",
+      "Task": "Clustering",
+      "MAE": "N/A",
+      "RMSE": "N/A",
+      "R2": "N/A",
+      "Accuracy": "N/A",
+      "Precision": "N/A",
+      "Recall": "N/A",
+      "Macro-F1": "N/A",
+      "Silhouette": "0.4821",
+      "Train Time (s)": 5.316,
+      "Train Samples": 179925,
+      "Test Samples": 60000
+    },
+    {
+      "Model": "Majority Class Baseline",
+      "Task": "Classification",
+      "MAE": "N/A",
+      "RMSE": "N/A",
+      "R2": "N/A",
+      "Accuracy": "0.2000",
+      "Precision": "0.0286",
+      "Recall": "0.1429",
+      "Macro-F1": "0.0476",
+      "Silhouette": "N/A",
+      "Train Time (s)": 0.157,
+      "Train Samples": 179925,
+      "Test Samples": 60000
+    },
+    {
+      "Model": "CART Decision Tree (Scratch)",
+      "Task": "Classification",
+      "MAE": "N/A",
+      "RMSE": "N/A",
+      "R2": "N/A",
+      "Accuracy": "0.7186",
+      "Precision": "0.6766",
+      "Recall": "0.5953",
+      "Macro-F1": "0.5830",
+      "Silhouette": "N/A",
+      "Train Time (s)": 12.033,
+      "Train Samples": 179925,
+      "Test Samples": 60000
+    },
+    {
+      "Model": "AdaBoost SAMME (Scratch)",
+      "Task": "Classification",
+      "MAE": "N/A",
+      "RMSE": "N/A",
+      "R2": "N/A",
+      "Accuracy": "0.6447",
+      "Precision": "0.5242",
+      "Recall": "0.5192",
+      "Macro-F1": "0.5022",
+      "Silhouette": "N/A",
+      "Train Time (s)": 90.155,
+      "Train Samples": 179925,
+      "Test Samples": 60000
+    },
+    {
+      "Model": "CART Decision Tree (Reference)",
+      "Task": "Classification",
+      "MAE": "N/A",
+      "RMSE": "N/A",
+      "R2": "N/A",
+      "Accuracy": "0.6725",
+      "Precision": "0.7025",
+      "Recall": "0.5695",
+      "Macro-F1": "0.5347",
+      "Silhouette": "N/A",
+      "Train Time (s)": 4.318,
+      "Train Samples": 179925,
+      "Test Samples": 60000
+    },
+    {
+      "Model": "AdaBoost (Reference)",
+      "Task": "Classification",
+      "MAE": "N/A",
+      "RMSE": "N/A",
+      "R2": "N/A",
+      "Accuracy": "0.5986",
+      "Precision": "0.4346",
+      "Recall": "0.4733",
+      "Macro-F1": "0.4285",
+      "Silhouette": "N/A",
+      "Train Time (s)": 27.821,
+      "Train Samples": 179925,
+      "Test Samples": 60000
+    }
+  ],
+  "best_models": {
+    "Regression": {
+      "winner": "Linear Regression (Reference)",
+      "primary_metric": "RMSE",
+      "score": 0.0,
+      "r2": 1.0,
+      "reason": "Achieved lowest Root Mean Squared Error (0.0000 W) and highest R2 (1.0000) on held-out test data."
+    },
+    "Classification": {
+      "winner": "CART Decision Tree (Scratch)",
+      "primary_metric": "Macro-F1",
+      "score": 0.583,
+      "accuracy": 0.7186,
+      "reason": "Achieved highest Macro-F1 (0.5830) accounting for fault class imbalance on held-out scenarios."
+    },
+    "Clustering": {
+      "winner": "GMM / EM (Scratch)",
+      "primary_metric": "Silhouette Score",
+      "score": 0.4820791297416621,
+      "reason": "Yielded highest cluster cohesion and separation (Silhouette = 0.4821)."
+    }
+  },
+  "classification_metrics": {
+    "cart": {
+      "Accuracy": 0.7186,
+      "Balanced_Accuracy": 0.5953,
+      "Precision": 0.6766,
+      "Recall": 0.5953,
+      "Macro-F1": 0.583,
+      "Weighted-F1": 0.7018,
+      "classes": [
+        "CondenserFouling",
+        "EvaporatorFouling",
+        "FaultFree",
+        "LiquidLineRestriction",
+        "RefrigerantOvercharge",
+        "RefrigerantUndercharge",
+        "SuctionLineRestriction"
+      ],
+      "confusion_matrix": [
+        [
+          12000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          10827,
+          0,
+          1167,
+          4,
+          0,
+          2
+        ],
+        [
+          0,
+          13,
+          0,
+          1314,
+          1,
+          1071,
+          1
+        ],
+        [
+          0,
+          83,
+          0,
+          8745,
+          96,
+          605,
+          71
+        ],
+        [
+          0,
+          42,
+          0,
+          4442,
+          1211,
+          1446,
+          59
+        ],
+        [
+          0,
+          27,
+          0,
+          4021,
+          5,
+          3147,
+          0
+        ],
+        [
+          0,
+          3,
+          0,
+          1503,
+          2,
+          907,
+          7185
+        ]
+      ],
+      "per_class": {
+        "CondenserFouling": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 12000
+        },
+        "EvaporatorFouling": {
+          "precision": 0.9847,
+          "recall": 0.9022,
+          "f1": 0.9417,
+          "support": 12000
+        },
+        "FaultFree": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2400
+        },
+        "LiquidLineRestriction": {
+          "precision": 0.4127,
+          "recall": 0.9109,
+          "f1": 0.568,
+          "support": 9600
+        },
+        "RefrigerantOvercharge": {
+          "precision": 0.9181,
+          "recall": 0.1682,
+          "f1": 0.2843,
+          "support": 7200
+        },
+        "RefrigerantUndercharge": {
+          "precision": 0.4385,
+          "recall": 0.4371,
+          "f1": 0.4378,
+          "support": 7200
+        },
+        "SuctionLineRestriction": {
+          "precision": 0.9818,
+          "recall": 0.7484,
+          "f1": 0.8494,
+          "support": 9600
+        }
+      }
+    },
+    "adaboost": {
+      "Accuracy": 0.6447,
+      "Balanced_Accuracy": 0.5192,
+      "Precision": 0.5242,
+      "Recall": 0.5192,
+      "Macro-F1": 0.5022,
+      "Weighted-F1": 0.6254,
+      "classes": [
+        "CondenserFouling",
+        "EvaporatorFouling",
+        "FaultFree",
+        "LiquidLineRestriction",
+        "RefrigerantOvercharge",
+        "RefrigerantUndercharge",
+        "SuctionLineRestriction"
+      ],
+      "confusion_matrix": [
+        [
+          12000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          10379,
+          0,
+          304,
+          1255,
+          62,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1737,
+          8,
+          655,
+          0
+        ],
+        [
+          0,
+          111,
+          0,
+          7389,
+          485,
+          559,
+          1056
+        ],
+        [
+          0,
+          9,
+          0,
+          5725,
+          257,
+          1209,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          5411,
+          6,
+          1783,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2028,
+          16,
+          680,
+          6876
+        ]
+      ],
+      "per_class": {
+        "CondenserFouling": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 12000
+        },
+        "EvaporatorFouling": {
+          "precision": 0.9886,
+          "recall": 0.8649,
+          "f1": 0.9226,
+          "support": 12000
+        },
+        "FaultFree": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2400
+        },
+        "LiquidLineRestriction": {
+          "precision": 0.327,
+          "recall": 0.7697,
+          "f1": 0.459,
+          "support": 9600
+        },
+        "RefrigerantOvercharge": {
+          "precision": 0.1268,
+          "recall": 0.0357,
+          "f1": 0.0557,
+          "support": 7200
+        },
+        "RefrigerantUndercharge": {
+          "precision": 0.3603,
+          "recall": 0.2476,
+          "f1": 0.2935,
+          "support": 7200
+        },
+        "SuctionLineRestriction": {
+          "precision": 0.8669,
+          "recall": 0.7163,
+          "f1": 0.7844,
+          "support": 9600
+        }
+      }
+    }
+  },
+  "regression_metrics": {
+    "ols": {
+      "MAE": 29.9171,
+      "MSE": 1519.5685,
+      "RMSE": 38.9816,
+      "R2": 0.9983
+    },
+    "ridge": {
+      "MAE": 137.9101,
+      "MSE": 28591.6653,
+      "RMSE": 169.0907,
+      "R2": 0.9678
+    },
+    "baseline": {
+      "MAE": 794.2322,
+      "MSE": 892249.5097,
+      "RMSE": 944.5896,
+      "R2": -0.0056
+    }
+  },
+  "pca_explained_variance_ratio": [
+    0.5424828246757664,
+    0.1666306296732639
+  ],
+  "clustering": {
+    "kmeans_silhouette": 0.4725954300539691,
+    "gmm_silhouette": 0.4820791297416621
+  }
+}

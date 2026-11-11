@@ -1,0 +1,12 @@
+Model,Task,MAE,RMSE,R2,Accuracy,Precision,Recall,Macro-F1,Silhouette,Train Time (s),Train Samples,Test Samples
+Mean Baseline,Regression,794.2322,944.5896,-0.0056,N/A,N/A,N/A,N/A,N/A,0.001,179925,60000
+OLS Regression (Scratch),Regression,29.9171,38.9816,0.9983,N/A,N/A,N/A,N/A,N/A,36.101,179925,60000
+Ridge Regression (Scratch),Regression,137.9101,169.0907,0.9678,N/A,N/A,N/A,N/A,N/A,4.271,179925,60000
+Linear Regression (Reference),Regression,0.0000,0.0000,1.0000,N/A,N/A,N/A,N/A,N/A,0.84,179925,60000
+K-Means (Scratch),Clustering,N/A,N/A,N/A,N/A,N/A,N/A,N/A,0.4726,7.263,179925,60000
+GMM / EM (Scratch),Clustering,N/A,N/A,N/A,N/A,N/A,N/A,N/A,0.4821,5.316,179925,60000
+Majority Class Baseline,Classification,N/A,N/A,N/A,0.2000,0.0286,0.1429,0.0476,N/A,0.157,179925,60000
+CART Decision Tree (Scratch),Classification,N/A,N/A,N/A,0.7186,0.6766,0.5953,0.5830,N/A,12.033,179925,60000
+AdaBoost SAMME (Scratch),Classification,N/A,N/A,N/A,0.6447,0.5242,0.5192,0.5022,N/A,90.155,179925,60000
+CART Decision Tree (Reference),Classification,N/A,N/A,N/A,0.6725,0.7025,0.5695,0.5347,N/A,4.318,179925,60000
+AdaBoost (Reference),Classification,N/A,N/A,N/A,0.5986,0.4346,0.4733,0.4285,N/A,27.821,179925,60000

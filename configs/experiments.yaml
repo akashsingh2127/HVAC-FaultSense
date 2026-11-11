@@ -1,0 +1,35 @@
+# HVAC FaultSense - Experiment Configurations
+experiments:
+  random_seed: 42
+
+  split:
+    test_size: 0.25
+    validation_size: 0.15
+    strategy: "time_and_scenario_aware" # Preserves temporal order and holds out distinct scenario intervals
+
+  regression:
+    learning_rate: 0.01
+    max_iterations: 1500
+    tolerance: 1e-6
+    ridge_lambda: 1.0
+
+  unsupervised:
+    pca_n_components: 2
+    kmeans_k: 4
+    kmeans_max_iter: 100
+    kmeans_n_init: 5
+    gmm_n_components: 4
+    gmm_max_iter: 80
+    gmm_reg_covar: 1e-4
+
+  sequential:
+    hmm_n_states: 4
+    observation_clustering_k: 4
+
+  classification:
+    cart_max_depth: 8
+    cart_min_samples_split: 10
+    cart_min_samples_leaf: 5
+    adaboost_n_estimators: 25
+    adaboost_learning_rate: 0.5
+

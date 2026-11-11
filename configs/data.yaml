@@ -1,0 +1,49 @@
+# HVAC FaultSense - Data Configuration
+dataset:
+  name: "LBNL Rooftop Unit (RTU) Fault Detection and Diagnostics"
+  source_portal: "https://faultdetection.lbl.gov/dataset/rtu/"
+  sampling_rate_minutes: 1
+  raw_simulated_dir: "data/raw/simulated"
+  raw_field_dir: "data/raw/field"
+  raw_laboratory_dir: "data/raw/laboratory"
+  interim_dir: "data/interim"
+  processed_dir: "data/processed"
+  manifest_path: "data/interim/dataset_manifest.csv"
+  data_dictionary_path: "data/interim/data_dictionary.csv"
+
+target_variable: "RTU_TOT_WATT" # Continuous power consumption in Watts for regression
+
+features:
+  timestamp_col: "Datetime"
+  continuous_sensors:
+    - "RTU_OA_TEMP"
+    - "RTU_OA_HUM"
+    - "RTU_OA_FLOW"
+    - "RTU_RA_TEMP"
+    - "RTU_RA_HUM"
+    - "RTU_RA_FLOW"
+    - "RTU_SA_TEMP"
+    - "RTU_SA_HUM"
+    - "RTU_SA_FLOW"
+    - "RTU_SA_FAN_WATT"
+    - "RTU_COMP_WATT"
+    - "RTU_REFG_COND_TEMP"
+    - "RTU_REFG_COND_PRES"
+    - "RTU_REFG_DISC_TEMP"
+    - "RTU_REFG_DISC_PRES"
+    - "RTU_REFG_SUCT_TEMP"
+    - "RTU_REFG_SUCT_PRES"
+    - "RTU_SEN_CAPA"
+    - "RTU_TOT_CAPA"
+    - "ZA_TEMP"
+    - "ZA_HUM"
+    - "ZA_TEMP_SPT"
+  discrete_controls:
+    - "RTU_STG_STA"
+
+sampling:
+  # To enable fast, reproducible and representative experimentation while preserving full time-series patterns,
+  # we support configurable stride / downsampling (e.g. 5 or 10 min intervals) for model training and full evaluation.
+  resample_stride_minutes: 10
+  random_seed: 42
+

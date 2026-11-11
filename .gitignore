@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE & OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Project Data (raw downloaded datasets are large and shouldn't be committed)
+data/raw/*.zip
+data/raw/*.pdf
+data/raw/simulated/
+data/raw/laboratory/
+data/raw/field/
+data/interim/*.parquet
+data/interim/*.csv
+data/processed/*.parquet
+data/processed/*.csv
+
+# Temporary test logs and caches
+.pytest_cache/
+.coverage
+htmlcov/
+
