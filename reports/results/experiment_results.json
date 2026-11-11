@@ -30,7 +30,7 @@
       "Silhouette": "N/A",
       "Davies-Bouldin": "N/A",
       "Calinski-Harabasz": "N/A",
-      "Train Time (s)": 10.293,
+      "Train Time (s)": 32.222,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
@@ -47,7 +47,7 @@
       "Silhouette": "N/A",
       "Davies-Bouldin": "N/A",
       "Calinski-Harabasz": "N/A",
-      "Train Time (s)": 3.2,
+      "Train Time (s)": 6.643,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
@@ -64,7 +64,7 @@
       "Silhouette": "N/A",
       "Davies-Bouldin": "N/A",
       "Calinski-Harabasz": "N/A",
-      "Train Time (s)": 0.15,
+      "Train Time (s)": 0.448,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
@@ -81,7 +81,7 @@
       "Silhouette": "0.4966",
       "Davies-Bouldin": "0.7271",
       "Calinski-Harabasz": "4967.2",
-      "Train Time (s)": 3.206,
+      "Train Time (s)": 4.079,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
@@ -98,7 +98,7 @@
       "Silhouette": "0.4644",
       "Davies-Bouldin": "0.7380",
       "Calinski-Harabasz": "3764.5",
-      "Train Time (s)": 6.217,
+      "Train Time (s)": 7.264,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
@@ -115,7 +115,7 @@
       "Silhouette": "N/A",
       "Davies-Bouldin": "N/A",
       "Calinski-Harabasz": "N/A",
-      "Train Time (s)": 0.107,
+      "Train Time (s)": 0.174,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
@@ -132,7 +132,7 @@
       "Silhouette": "N/A",
       "Davies-Bouldin": "N/A",
       "Calinski-Harabasz": "N/A",
-      "Train Time (s)": 7.771,
+      "Train Time (s)": 13.957,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
@@ -149,7 +149,7 @@
       "Silhouette": "N/A",
       "Davies-Bouldin": "N/A",
       "Calinski-Harabasz": "N/A",
-      "Train Time (s)": 50.189,
+      "Train Time (s)": 83.526,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
@@ -166,7 +166,7 @@
       "Silhouette": "N/A",
       "Davies-Bouldin": "N/A",
       "Calinski-Harabasz": "N/A",
-      "Train Time (s)": 3.55,
+      "Train Time (s)": 5.295,
       "Train Samples": 179925,
       "Test Samples": 60000
     },
@@ -183,7 +183,7 @@
       "Silhouette": "N/A",
       "Davies-Bouldin": "N/A",
       "Calinski-Harabasz": "N/A",
-      "Train Time (s)": 18.66,
+      "Train Time (s)": 28.987,
       "Train Samples": 179925,
       "Test Samples": 60000
     },

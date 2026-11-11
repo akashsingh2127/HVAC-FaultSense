@@ -329,7 +329,7 @@ elif menu == "D. Regression Analysis":
         st.plotly_chart(fig_time_res, use_container_width=True)
 
         st.markdown(
-            """
+            r"""
             > **HVAC Engineering Interpretation:**  
             > • **Positive Residuals ($e_t > +3\sigma$):** The equipment is consuming significantly more power than expected for current ambient temperature and cooling load. Common thermodynamic causes include **condenser fouling** (elevated head pressure) or **refrigerant overcharge**.  
             > • **Negative Residuals ($e_t < -3\sigma$):** Power draw is lower than baseline expectations, often accompanied by degraded cooling delivery (e.g. **severe refrigerant undercharge** or compressor staging failure).
@@ -510,7 +510,7 @@ elif menu == "G. Fault Diagnosis":
             st.dataframe(pc_df, use_container_width=True)
 
         st.markdown(
-            """
+            r"""
             > **Physical Thermodynamic Signatures:**  
             > • **Condenser Fouling:** High condensing pressure (`RTU_REFG_COND_PRES`) and elevated condenser split ($\Delta T_{cond}$).  
             > • **Evaporator Fouling:** Low air temperature drop across coil ($\Delta T_{air}$) accompanied by low airflow.  
